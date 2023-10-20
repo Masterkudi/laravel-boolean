@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cocktail extends Model
 {
+
     use HasFactory;
+
     protected $fillable = [
         'cocktail_name',
         'category',
         'ingredients',
         'price',
 
+    ];
+
+    protected $casts = [
+        'ingredients' => 'json'
     ];
 }

@@ -8,15 +8,22 @@ use Illuminate\Support\Facades\Http;
 
 class CocktailApi extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a";
+        $response = Http::get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a');
+        $data = $response->json();
 
-        $drinks = Http::get($url)->json()["drinks"];
+        // Aggiungi un output di debug
+        dd($data);
 
-        dd($drinks);
+        foreach ($data as $cocktail) {
+            $id = $cocktail['idDrink'] ?? null;
+            $nome = $cocktail['strDrink'] ?? null;
+
+            \App\Models\Cocktail::create([
+                'id' => $id,
+                'nome' => $nome,
+            ]);
+        }
     }
 }
