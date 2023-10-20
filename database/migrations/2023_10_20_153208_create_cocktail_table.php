@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cocktail', function (Blueprint $table) {
+        Schema::create('cocktails', function (Blueprint $table) {
             $table->id();
 
-            $table->string("cocktail_name", 100);
-            $table->string("category", 100);
+            $table->string("nome", 100);
+            $table->string("category", 100)->nullable();
             $table->json("ingredients")->nullable();
-            $table->decimal("price", 4, 2);
+            $table->decimal('price', 8, 2)->default(0.00);
             $table->timestamps();
         });
     }
@@ -25,8 +25,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('cocktail');
+        Schema::dropIfExists('cocktails');
     }
 };

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 
@@ -13,17 +12,23 @@ class CocktailApi extends Seeder
         $response = Http::get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a');
         $data = $response->json();
 
-        // Aggiungi un output di debug
-        dd($data);
+        if (!isset($data['drinks'])) {
+            return;
+        }
 
-        foreach ($data as $cocktail) {
+        foreach ($data['drinks'] as $cocktail) {
             $id = $cocktail['idDrink'] ?? null;
             $nome = $cocktail['strDrink'] ?? null;
+            $category = $cocktail['strCategory'] ?? null;
 
-            \App\Models\Cocktail::create([
-                'id' => $id,
-                'nome' => $nome,
-            ]);
+
+            if ($id && !\App\Models\Cocktail::find($id)) {
+                \App\Models\Cocktail::create([
+                    'id' => $id,
+                    'nome' => $nome,
+                    'category' => $category,
+                ]);
+            }
         }
     }
 }
