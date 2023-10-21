@@ -15,6 +15,7 @@ class Cocktail extends Model
         'category',
         'ingredients',
         'price',
+        'allergens'
 
     ];
 
