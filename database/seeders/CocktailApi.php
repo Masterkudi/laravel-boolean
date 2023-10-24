@@ -20,6 +20,7 @@ class CocktailApi extends Seeder
             $id = $cocktail['idDrink'] ?? null;
             $nome = $cocktail['strDrink'] ?? null;
             $category = $cocktail['strCategory'] ?? null;
+            $image = $cocktail['strDrinkThumb'] ?? null;
 
 
             if ($id && !\App\Models\Cocktail::find($id)) {
@@ -27,6 +28,7 @@ class CocktailApi extends Seeder
                     'id' => $id,
                     'nome' => $nome,
                     'category' => $category,
+                    'image' => $image,
                 ]);
             }
         }
