@@ -7,6 +7,9 @@
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia quo voluptatibus cupiditate. Ullam, quae id provident dicta aliquam numquam beatae voluptatem quaerat in obcaecati maxime accusamus excepturi porro, nostrum vero!</p>
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> 30b99e93f4ece59651c4206ee458854b0e1516f8
 
 ciao
 
